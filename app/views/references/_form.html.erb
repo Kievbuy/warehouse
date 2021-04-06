@@ -12,6 +12,9 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.submit 'Save', class: 'btn' %>
   </div>
 <% end %>
