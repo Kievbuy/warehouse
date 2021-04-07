@@ -12,6 +12,25 @@
   <% end %>
 
   <div class="actions">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <h5>Criterias</h5>
+
+    <%= form.label :references %>
+    <div class="input-field col s12">
+      <%= form.select :reference_ids, Reference.all.map { |r| [r.name, r.id] }, { include_blank: true }, { style: 'display: block; height: 150px', multiple: true } %>
+    </div>
+
+    <%= form.label :categories %>
+    <div class="input-field col s12">
+      <%= form.select :category_ids, Category.all.map { |c| [c.name, c.id] }, { include_blank: true }, { style: 'display: block; height: 150px', multiple: true } %>
+    </div>
+
+    <%= form.label :maximum_price %>
+    <%= form.number_field :max_price %>
+
+    <br><br>
     <%= form.submit 'Save', class: 'btn' %>
   </div>
 <% end %>

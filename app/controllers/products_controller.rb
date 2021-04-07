@@ -23,9 +23,11 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
+    @product.destination = Product::DestinationAssignment.call(@product)
+
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: "Product was successfully created." }
+        format.html { redirect_to products_path, notice: "Product was successfully created and assigntd to destination #{@product.destination.name}" }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,6 +66,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.fetch(:product, {})
+      params.fetch(:product, {}).permit(:name, :category_id, :reference_id, :price)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_180058) do
+ActiveRecord::Schema.define(version: 2021_04_07_145402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,21 +21,31 @@ ActiveRecord::Schema.define(version: 2021_04_06_180058) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "categories_destinations", id: false, force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "destination_id"
+  end
+
   create_table "destinations", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
+    t.integer "max_price"
+  end
+
+  create_table "destinations_references", id: false, force: :cascade do |t|
+    t.integer "destination_id"
+    t.integer "reference_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.string "reference"
+    t.bigint "reference_id"
     t.bigint "category_id"
+    t.bigint "destination_id"
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "reference_id"
-    t.bigint "destination_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["destination_id"], name: "index_products_on_destination_id"
     t.index ["reference_id"], name: "index_products_on_reference_id"

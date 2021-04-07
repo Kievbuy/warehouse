@@ -25,7 +25,7 @@ class DestinationsController < ApplicationController
 
     respond_to do |format|
       if @destination.save
-        format.html { redirect_to @destination, notice: "Destination was successfully created." }
+        format.html { redirect_to destinations_path, notice: "Destination was successfully created." }
         format.json { render :show, status: :created, location: @destination }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -64,6 +64,6 @@ class DestinationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def destination_params
-      params.fetch(:destination, {})
+      params.fetch(:destination, {}).permit(:name, :max_price, reference_ids: [], category_ids: [])
     end
 end

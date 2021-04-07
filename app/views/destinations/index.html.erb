@@ -6,7 +6,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Criteria</th>
+      <th>References</th>
+      <th>Categories</th>
+      <th>Max price</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +16,18 @@
   <tbody>
     <% @destinations.each do |destination| %>
       <tr>
-        <td></td>
-        <td></td>
+        <td><%= destination.name %></td>
+        <td>
+          <% destination.references.each do |ref| %>
+            <%= ref.name %> <br>
+          <% end %>
+        </td>
+        <td>
+          <% destination.categories.each do |cat| %>
+            <%= cat.name %> <br>
+          <% end %>
+        </td>
+        <td><%= destination.max_price %></td>
         <td><%= link_to 'Show', destination %></td>
         <td><%= link_to 'Edit', edit_destination_path(destination) %></td>
         <td><%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
