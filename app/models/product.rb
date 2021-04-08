@@ -3,5 +3,5 @@ class Product < ApplicationRecord
   belongs_to :reference
   belongs_to :destination
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 end

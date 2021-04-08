@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Whorehouse application
 
-Things you may want to cover:
+You can create create products, categories, references and destinations by using user interface of the application.
 
-* Ruby version
+*Before creating the products, ensure that you have at least one destination*
 
-* System dependencies
+---
 
-* Configuration
+### to run the application
+type in terminal
+`rails s` \
+then visit the http://localhost:3000/ in your browser
 
-* Database creation
+### to run the rails console
+type in terminal
+`rails c`
 
-* Database initialization
+### to run the tests type
+type in terminal
+`rspec spec`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

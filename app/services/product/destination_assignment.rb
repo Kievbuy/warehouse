@@ -1,10 +1,10 @@
-
+require 'pry'
 class Product::DestinationAssignment
   include Callable
 
-  def initialize(product, default_destination_id = 1)
+  def initialize(product, default_destination)
     @product = product
-    @default_destination = Destination.find default_destination_id
+    @default_destination = default_destination
     @destinations = Hash.new(0)
   end
 
@@ -24,7 +24,7 @@ class Product::DestinationAssignment
   end
 
   def set_destination
-    destination_id = @destinations.sort_by { |k, v| v }.last[0]
+    destination_id = @destinations.sort_by { |k, v| v }.last.try(:[], 0)
     destination_id ? Destination.find(destination_id) : @default_destination
   end
 
@@ -43,6 +43,6 @@ class Product::DestinationAssignment
   def suitable_price(destination)
     return false unless destination.max_price
 
-    destination.max_price < @product.price
+    destination.max_price > @product.price.to_i
   end
 end
